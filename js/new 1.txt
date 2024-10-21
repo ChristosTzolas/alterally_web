@@ -1,0 +1,54 @@
+my_dict = {
+    'Alice': {'salary': 50000, 'years_of_experience': 5},
+    'Bob': {'salary': 60000, 'years_of_experience': 6},
+    'Charlie': {'salary': 70000, 'years_of_experience': 7},
+    'David': {'salary': 80000, 'years_of_experience': 8},
+    'Eve': {'salary': 90000, 'years_of_experience': 9}
+}
+
+stoixeio_anazhthshs = input('Dwse onoma gia anazhthsh: ')
+
+def print_dict(my_dict):
+    print(my_dict)
+
+def search(my_dict, stoixeio_anazhthshs):
+    if stoixeio_anazhthshs in my_dict:
+        print(f'To onoma {stoixeio_anazhthshs} exei: {my_dict[stoixeio_anazhthshs]}')
+    else:
+        print('To stoixeio anazhthshs den brethike')
+
+def add(my_dict):
+    name = input('Dwse onoma poy prepei na prostethei: ')
+    if name in my_dict:
+        print('To onoma auto brisketai hdh sto leksiko')
+    else:
+        salary = int(input('Dwse mistho: '))
+        empeiria = int(input('Dwse xronia empeirias: '))
+        my_dict[name] = {'salary': salary, 'years_of_experience': empeiria}
+
+def delete(my_dict):
+    name = input('Dwse onoma poy prepei na afairethei: ')
+    if name in my_dict:
+        del my_dict[name]
+    else:
+        print(f'To onoma {name} den brethike sto leksiko')
+
+def elexos_ergasiakhs_empeirias(my_dict):
+    count = sum(1 for value in my_dict.values() if value['years_of_experience'] > 6)
+    print(f'Ta atoma poy exoyn ergasiakh empeiria panw apo 6 xronia einai: {count}')
+
+def mesos_oros_empeirias(my_dict):
+    total_years = sum(value['years_of_experience'] for value in my_dict.values())
+    count = len(my_dict)
+    mesos_oros = total_years / count if count > 0 else 0
+    print(f'O mesos oros twn xronwn empeirias einai: {mesos_oros:.2f} xronia')
+
+print_dict(my_dict)
+search(my_dict, stoixeio_anazhthshs)
+add(my_dict)
+print_dict(my_dict)
+delete(my_dict)
+print_dict(my_dict)
+elexos_ergasiakhs_empeirias(my_dict)
+mesos_oros_empeirias(my_dict)
+print_dict(my_dict)
