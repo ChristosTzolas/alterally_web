@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-gray-50 flex">
+    <div id="sidePanel" class="side-panel bg-green-500 shadow-lg min-h-screen py-10 rounded-r-3xl text-white flex flex-col items-center">
+        <!-- Hamburger Button -->
+        <button id="toggleButton" class="hamburger-button absolute top-0 right-0 mt-4 mr-4">
+            <div class="hamburger-line bg-white mb-1"></div>
+            <div class="hamburger-line bg-white mb-1"></div>
+            <div class="hamburger-line bg-white"></div>
+        </button>
+        <img src="./icons/admin.png" alt="Admin logo" class="h-40 w-40">
+        
+        <!-- Navigation Icons -->
+        <a href="./dashboard.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/home.png" alt="Dashboard" class="h-6 w-6"> 
+        </a>
+        <a href="./management.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/items.png" alt="Item Management" class="h-6 w-6">
+        </a>
+        <a href="warehouse.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/boxes.png" alt="Warehouse Status" class="h-6 w-6">
+        </a>
+        <a href="map_admin.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/maps.png" alt="maps" class="h-6 w-6">
+        </a>               
+        <a href="php/logout.php" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/logout.png" alt="Logout" class="h-6 w-6">
+        </a>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="flex-1 container mx-auto px-4 sm:px-8 py-8">
+        <h1 class="text-4xl font-bold text-green-500 mb-8">Dashboard</h1>
+
+       
+
+            <!-- Panel 2: Latest Activities -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div class="bg-white p-4 shadow-md rounded-lg">
+                    <h2 class="text-lg text-gray-700 mb-4">Mark Items as In Need</h2>
+                    <form id="markItemsInNeedForm">
+                        <select id="itemsToMark" name="itemsToMark[]" multiple class="px-4 py-4 w-full border rounded-md mb-4" required style="height: 210px">
+                            <!-- Options will be populated here -->
+                        </select>
+                        <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none">
+                            Mark as in Need
+                        </button>
+                    </form>
+                </div>   
+            </div>
+
+            <!-- Panel 3: Quick Actions -->
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <h2 class="text-lg font-medium text-gray-700">Create Rescuer Account</h2>
+                <form id="createRescuerForm">
+                    <input type="text" id="rescuerName" name="name" placeholder="Full Name" class="mb-2 p-2 w-full border rounded" required>
+                    <input type="text" id="rescuerUsername" name="username" placeholder="Username" class="mb-2 p-2 w-full border rounded" required>
+                    <input type="email" id="rescuerEmail" name="email" placeholder="Email" class="mb-2 p-2 w-full border rounded" required>
+                    <input type="password" id="rescuerPassword" name="password" placeholder="Password" class="mb-2 p-2 w-full border rounded" required>
+                    <input type="text" id="rescuerPhone" name="phone" placeholder="Phone" class="mb-2 p-2 w-full border rounded" required>
+                    <input type="hidden" id="rescuerRole" name="role" value="emt">
+                    <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-pink-700 focus:outline-none">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+
+           
+		   
+            <!-- Panel for Graph Generation -->
+            <div class="bg-white p-4 shadow-md rounded-lg" id="graph">
+                <h2 class="text-lg font-medium text-gray-700">Generate Graph</h2>
+                <form id="graphGenerationForm" class="mt-4">
+                    <!-- Dropdown for Graph Type -->
+                    <div class="mb-4">
+                        <label for="graphType" class="block text-sm font-medium text-gray-700">Graph Type</label>
+                        <select id="graphType" name="graphType" class="mt-1 p-2 w-full border rounded bg-white focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="responses">Responses</option>
+                            <option value="requests">Requests</option>
+                        </select>
+                    </div>
+                    <!-- Date Fields -->
+                    <div class="mb-4">
+                        <label for="startDate" class="block text-sm font-medium text-gray-700">Start Date</label>
+                        <input type="date" id="startDate" name="startDate" class="mt-1 p-2 w-full border rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>
+                        <input type="date" id="endDate" name="endDate" class="mt-1 p-2 w-full border rounded" required>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none">
+                        Generate Graph
+                    </button>
+                </form>
+            </div>
+            
+
+            
+                    <!-- Upload Panel Toggle Button -->
+            <button onclick="toggleUploadPanel()" class="upload-panel-button fixed top-0 right-0 m-4 bg-indigo-600 hover:bg-green-700 text-white p-1 rounded">   
+                <img src="./icons/upload.png" alt="Upload"> <!-- Replace with your upload icon -->
+            </button>
+
+            <!-- Upload Panel -->
+            <div id="uploadPanel" class="fixed inset-y-0 right-0 bg-green-500 shadow-md rounded-l-lg p-4 overflow-y-auto transition-transform transform translate-x-full">
+                <div class="flex items-center justify-between border-b pb-2 mb-4">
+                    <h2 class="text-lg font-medium text-white">Upload JSON</h2>
+                    <button onclick="toggleUploadPanel()" class="focus:outline-none hover:bg-gray-200 rounded">
+                        <img src="./icons/upload.png" alt="Close" class="h-6 w-6"> <!-- Replace with your close icon -->
+                    </button>
+                </div>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center">
+                    <img src="./icons/upload2.png" alt="Upload" class="mb-3 h-12 w-12"> <!-- Replace with your cloud upload icon -->
+                    <p class="mb-3 text-sm text-gray-200">Drag & Drop File</p>
+                    <p class="text-xs text-gray-200">OR</p>
+                    <label class="bg-white hover:bg-gray-100 text-indigo-600 cursor-pointer rounded p-1 mt-2 inline-block">
+                        <span>Browse File</span>
+                        <input type="file" id="jsonFileInput" accept=".json" class="hidden" onchange="uploadJsonFile()" />
+                    </label>
+                </div>
+            </div>
+
+            <div id="mapContainer" class="hidden fixed top-0 left-0 h-full w-4/5 z-50 bg-indigo-600 shadow-md rounded-l-lg">
+                <div class="relative h-full flex flex-col justify-center items-center p-4"> <!-- flex container for centering -->
+                    <button onclick="toggleMapPanel()" class="absolute top-0 right-0 m-4">
+                        <img src="./icons/close.png" class="bg-indigo-600 hover:bg-indigo-700 rounded-md p-1 h-12 w-12">
+                    </button>
+            
+                    <!-- Map centered and rounded -->
+                    <div id="map" class="w-full h-4/5 rounded-lg overflow-hidden">
+                        <!-- Leaflet map will be injected here -->
+                    </div>
+                </div>
+            </div>
+            
+            
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/map_admin.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/panels.js"></script>
+    <script src="./js/authorize.js"></script>
+</body>
+</html>

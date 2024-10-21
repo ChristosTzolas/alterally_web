@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-gray-50 flex">
+    <div id="sidePanel" class="side-panel bg-green-500 shadow-lg min-h-screen py-10 rounded-r-3xl text-white flex flex-col items-center">
+        <!-- Hamburger Button -->
+        <button id="toggleButton" class="hamburger-button absolute top-0 right-0 mt-4 mr-4">
+            <div class="hamburger-line bg-white mb-1"></div>
+            <div class="hamburger-line bg-white mb-1"></div>
+            <div class="hamburger-line bg-white"></div>
+        </button>
+        <img src="./icons/citizen.png" alt="Alertally logo" class="h-40 w-40">
+        
+        <!-- Navigation Icons -->
+        <a href="./user_dashboard.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/home.png" alt="Dashboard" class="h-6 w-6"> 
+        </a>
+        <a href="php/logout.php" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-64">
+            <img src="./icons/logout.png" alt="Logout" class="h-6 w-6">
+        </a><!--
+        <div class="contact-section">
+            <p class="contact-label text-center">Emergency Line</p>
+            <a href="php/logout.php" class="contact-icon hover:bg-gray-700 rounded transition-all duration-300 mb-10">
+                <img src="./icons/emergency.png" alt="Emergency" class="h-6 w-6">
+            </a>
+            <p class="contact-label text-center">Chat now</p>
+            <a href="php/logout.php" class="contact-icon hover:bg-gray-700 rounded transition-all duration-300 mb-10">
+                <img src="./icons/chat.png" alt="Emergency" class="h-6 w-6">
+            </a>
+        </div>-->
+        
+        </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="flex-1 container mx-auto px-4 sm:px-8 py-8">
+        <!-- Bell Icon -->
+        <button id="notificationBell" class="absolute top-4 right-4 focus:outline-none hover:bg-indigo-600 rounded-md">
+            <img src="./icons/notibell.png" alt="Notifications" class="h-6 w-6">
+        </button>
+        <h1 class="text-4xl font-bold text-green-500 mb-8">Dashboard</h1>
+
+        <!-- Dashboard Panels -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Panel 1: Quick Item Summary -->
+                <div class="bg-white p-4 shadow-md rounded-lg">
+                    
+                    
+                <!-- Panel for Creating New Requests -->
+                <div class="bg-white p-4 shadow-md rounded-lg">
+                    <h2 class="text-lg text-gray-700 mb-4">Make a request</h2>
+                    <h2 class="text-lg font-medium text-gray-700 mb-4">Select Category:</h2>
+                    <select id="categoryFilter" name="categorySelection" class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline">
+                        <!-- Category options will be populated here -->
+                    </select>
+                    
+                    <label for="itemSearch" class="text-lg font-medium text-gray-700 mb-4">Search for an Item:</label>
+                    <input type="text" id="itemSearch" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Type to search...">
+                    <div id="searchResults" class="mt-2"></div>
+                    <!-- Hidden input for selected item ID -->
+                    <input type="hidden" id="selectedItemId" value="">
+
+                </div>
+
+                <!-- Item Selection (this might be hidden or shown based on your design) -->
+                <!-- Hidden input for selected item -->
+                <div id="selectedItemContainer" class="selected-item-container">
+                    <label for="selectedItemText" class="block text-gray-700 text-sm font-bold mb-2">Selected Item:</label>
+                    <input type="text" id="selectedItemText" class="selected-item-text shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline mb-4" readonly>
+                </div>
+
+                    
+                            <!-- Items Selection -->
+                <div class="bg-white p-4 shadow-md rounded-lg mt-4">
+                    <label for="itemSelection" class="block text-gray-700 text-sm font-bold mb-2">Item:</label>
+                    <select id="itemSelection" class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline">
+                        <!-- Item options will be populated based on the selected category -->
+                    </select>
+                </div>
+
+                <!-- Quantity Input -->
+                <div class="bg-white p-4 shadow-md rounded-lg mt-4">
+                    <label for="quantity" class="block text-gray-700 text-sm font-bold mb-2">People:</label>
+                    <input type="number" id="quantity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline mb-4" min="1" value="1" />
+                </div>
+
+                <div class="response-details-container">
+                    <!-- Assuming there's a textarea similar to your second example -->
+                    <textarea id="requestDetails" name="requestDetails" placeholder="Add details"></textarea>
+                    
+                    <!-- Updated button element -->
+                    <button type="button" id="submitRequest" class="bg-grey-700 hover:bg-grey-700 text-white font-bold py-2 px-4 rounded mt-4 mx-auto block">
+                        Submit Request
+                    </button>
+                </div>
+                
+    
+                <!-- Active and Past Requests -->
+                <div class="bg-w p-4 shadow-md rounded-lg mt-4 h-64 overflow-y-auto border">
+                    <h2 class="text-lg font-medium text-gray-700">My Requests</h2>
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                    Item Name
+                                </th>
+                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                    Created At
+                                </th>
+                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsTable">
+                            <!-- Rows will be populated here with JS -->
+                        </tbody>
+                    </table>
+                </div> 
+            
+         </div>  
+
+            <!-- Panel 2: Latest Activities-->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div class="bg-white p-4 shadow-md rounded-lg">
+                    <h2 class="text-lg text-gray-700 mb-4">Mark items to give</h2>
+                    <form id="markItemsToGive">
+                        <select id="itemsToMark" name="itemsToMark[]" multiple class="px-4 py-4 w-full border rounded-md mb-4 font-bold" required style="height: 210px">
+                            <!-- Options will be populated here -->
+                        </select>
+                        <div class="response-details-container">
+                            <textarea id="responseDetails" name="responseDetails" placeholder="Add details during pickup"></textarea>
+                            <button type="submit" id="sendButton">Send</button>
+                        </div>
+                    </form>
+                </div>   
+                <div class="bg-white p-4 shadow-md rounded-lg">
+                    <p class="text-lg text-gray-700 mb-4">My Profile</p>
+                   <!-- <h2 class="text-green-700 font-bold">My Profile</h2> -->
+                    <div id="userInfo" class="space-y-2">
+                        <p>Username: <span id="userName" class="font-bold"><!-- Username will be here --></span>
+                            <img src="./icons/edit" alt="Edit Username" onclick="editUserInfo('username')" class="cursor-pointer inline ml-2 h-5 w-5" id="editUsername" />
+                        </p>
+                        <p>Email: <span id="userEmail" class="font-bold"><!-- User Email will be here --></span>
+                            <img src="./icons/edit" alt="Edit Email" onclick="editUserInfo('email')" class="cursor-pointer inline ml-2 h-5 w-5" id="editEmail" />
+                        </p>
+                        <p>Name: <span id="userName" class="font-bold"><!-- User Name will be here --></span>
+                            <img src="./icons/edit" alt="Edit Name" onclick="editUserInfo('name')" class="cursor-pointer inline ml-2 h-5 w-5" id="editName" />
+                        </p>
+                        <p>Phone: <span id="userPhone" class="font-bold"><!-- User Phone will be here --></span>
+                            <img src="./icons/edit" alt="Edit Phone" onclick="editUserInfo('phone')" class="cursor-pointer inline ml-2 h-5 w-5" id="editPhone" />
+                        </p>
+                        <p>Password:
+                            <img src="./icons/edit" alt="Change Password" onclick="editUserInfo('password')" class="cursor-pointer inline ml-2 h-5 w-5"  id="changePassword" />
+                        </p>
+                    </div>
+            </div>
+            </div>
+            
+
+            <!-- Existing content ... -->
+
+            <!-- New Panel: Offers Management -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div class="bg-white p-4 shadow-md rounded-lg ">
+                    <h2 class="text-lg text-gray-700 mb-4">My Responses</h2>
+
+                    <!-- Offers Table -->
+                    <div class="overflow-auto" style="height: 500px;"> 
+                        <table class="min-w-full leading-normal">
+                            <thead>
+                                <tr>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                        Item ID
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                        Item Name
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                        Details
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                        Status
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                        Created At
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-green-700 tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="responsesTable">
+                                <!-- Rows will be populated here with JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div class="bg-white p-4 shadow-md rounded-lg">
+                <p class="text-lg text-gray-700 mb-4">Modify my data</p>
+                <h2 class="text-indigo-700 font-bold">My Profile</h2>
+                <div id="userInfo" class="space-y-2">
+                    <p>Username: <span id="userName" class="font-bold"><!-- Username will be here --></span>
+                        <!-- <img src="./icons/edit.png" alt="Edit Username" onclick="editUserInfo('username')" class="cursor-pointer inline ml-2 h-5 w-5" id="editUsername" />
+                    </p>
+                    <p>Email: <span id="userEmail" class="font-bold"><!-- User Email will be here --></span>
+                        <!-- <img src="./icons/edit.png" alt="Edit Email" onclick="editUserInfo('email')" class="cursor-pointer inline ml-2 h-5 w-5" id="editEmail" />
+                    </p>
+                    <p>Name: <span id="userName" class="font-bold"><!-- User Name will be here --></span>
+                        <!-- <img src="./icons/edit.png" alt="Edit Name" onclick="editUserInfo('name')" class="cursor-pointer inline ml-2 h-5 w-5" id="editName" />
+                    </p>
+                    <p>Phone: <span id="userPhone" class="font-bold"><!-- User Phone will be here --></span>
+                        <!-- <img src="./icons/edit.png" alt="Edit Phone" onclick="editUserInfo('phone')" class="cursor-pointer inline ml-2 h-5 w-5" id="editPhone" />
+                    </p>
+                    <p>Password:
+                        <img src="./icons/edit.png" alt="Change Password" onclick="editUserInfo('password')" class="cursor-pointer inline ml-2 h-5 w-5"  id="changePassword" />
+                    </p>
+                </div>
+            </div>  --> 
+
+        
+            <div id="notificationPanel" class="hidden fixed inset-y-0 right-0 w-64 bg-green-500 shadow-md rounded-l-lg p-4 overflow-y-auto">
+                <div class="flex items-center justify-between border-b pb-2 mb-4">
+                    <h2 class="text-lg font-medium">Notification's Center</h2>
+                    <button id="closePanel" class="focus:outline-none">
+                        <img src="./icons/notibell.png" alt="Close" class="h-6 w-6">
+                    </button>
+                </div>
+                <div id="notificationsList">
+                    <!-- Notifications will be populated here -->
+                </div>
+            </div>
+            
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/user_dashboard.js"></script> <!-- Your JavaScript file for handling dashboard logic -->
+    <script src="./js/panels.js"></script>
+    <script src="./js/authorize.js"></script>
+    
+</body>
+</html>
+
+

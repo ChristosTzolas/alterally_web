@@ -1,0 +1,163 @@
+[
+    {
+      "id": 1,
+      "disaster_id": 1,
+      "name": "Kitchen appliances",
+      "description": "Includes scrubbers, rubber gloves, kitchen deterge...",
+      "quantity": 100
+    },
+    {
+      "id": 2,
+      "disaster_id": 2,
+      "name": "Water Bottle",
+      "description": "Essential for survival and hydration",
+      "quantity": 100
+    },
+    {
+      "id": 3,
+      "disaster_id": 2,
+      "name": "Food",
+      "description": "Non-perishable food items for sustenance",
+      "quantity": 100
+    },
+    {
+      "id": 4,
+      "disaster_id": 3,
+      "name": "Cool scarf",
+      "description": "Provides a cooling effect when wet and worn around...",
+      "quantity": 100
+    },
+    {
+      "id": 5,
+      "disaster_id": 3,
+      "name": "Cool wristlets",
+      "description": "Wearable cooling accessories for the wrists",
+      "quantity": 100
+    },
+    {
+      "id": 6,
+      "disaster_id": 3,
+      "name": "Fan",
+      "description": "Portable hand-held or battery-operated fans",
+      "quantity": 100
+    },
+    {
+      "id": 7,
+      "disaster_id": 3,
+      "name": "Cooling pads",
+      "description": "Gel pads that can be cooled and applied to the bod...",
+      "quantity": 100
+    },
+    {
+      "id": 8,
+      "disaster_id": 4,
+      "name": "Winter hat",
+      "description": "Insulated hats to retain body heat",
+      "quantity": 100
+    },
+    {
+      "id": 9,
+      "disaster_id": 4,
+      "name": "Winter gloves",
+      "description": "Gloves designed to keep hands warm in cold conditi...",
+      "quantity": 100
+    },
+    {
+      "id": 10,
+      "disaster_id": 4,
+      "name": "Scarf",
+      "description": "To protect against cold winds and retain heat",
+      "quantity": 100
+    },
+    {
+      "id": 11,
+      "disaster_id": 4,
+      "name": "Winter socks",
+      "description": "Thick socks for warmth",
+      "quantity": 100
+    },
+    {
+      "id": 12,
+      "disaster_id": 4,
+      "name": "Warm tent",
+      "description": "Insulated and weather-resistant shelter",
+      "quantity": 100
+    },
+    {
+      "id": 13,
+      "disaster_id": 4,
+      "name": "Hot pack",
+      "description": "Chemical or rechargeable packs that provide heat",
+      "quantity": 100
+    },
+    {
+      "id": 14,
+      "disaster_id": 4,
+      "name": "Thermos",
+      "description": "Insulated container to keep liquids hot",
+      "quantity": 100
+    },
+    {
+      "id": 15,
+      "disaster_id": 5,
+      "name": "Silver blanket",
+      "description": "Reflective blankets to retain body heat and for sh...",
+      "quantity": 100
+    },
+    {
+      "id": 16,
+      "disaster_id": 5,
+      "name": "Helmet",
+      "description": "Protective headgear to prevent injury from debris",
+      "quantity": 100
+    },
+    {
+      "id": 17,
+      "disaster_id": 5,
+      "name": "Disposable toilet",
+      "description": "Hygienic solutions for sanitation needs",
+      "quantity": 100
+    },
+    {
+      "id": 18,
+      "disaster_id": 5,
+      "name": "Self-generated flashlight",
+      "description": "Flashlights with a hand crank or other self-chargi...",
+      "quantity": 100
+    },
+    {
+      "id": 19,
+      "disaster_id": 6,
+      "name": "Respirators or Dust Masks",
+      "description": "Masks to filter out particulate matter from smoke",
+      "quantity": 100
+    },
+    {
+      "id": 20,
+      "disaster_id": 6,
+      "name": "First Aid Kits",
+      "description": "Kits with supplies to treat burns and injuries",
+      "quantity": 100
+    },
+    {
+      "id": 21,
+      "disaster_id": 6,
+      "name": "Burn Ointments and Dressings",
+      "description": "Specialized first aid for burn treatment",
+      "quantity": 100
+    },
+    {
+      "id": 22,
+      "disaster_id": 6,
+      "name": "Emergency Blankets",
+      "description": "To provide warmth and protection from elements",
+      "quantity": 100
+    },
+    {
+      "id": 23,
+      "disaster_id": 6,
+      "name": "Bottled Water",
+      "description": "For hydration when in need",
+      "quantity": 100
+    }
+  ]

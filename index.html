@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <!-- Login Form -->
+    <div class="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24" id="login_form">
+        <div class="w-full max-w-md mx-auto">
+          <img src="alertally.png" id="login_img">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 -mt-4" id="login">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 orange-text" for="username">
+                        Username
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 orange-text leading-tight focus:outline-none focus:shadow-outline text-center" type="text" required id="username" placeholder="Username">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 orange-text" for="password">
+                        Password
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 orange-text mb-3 leading-tight focus:outline-none focus:shadow-outline text-center" type="password" required id="password" placeholder="******************">
+                    <div class="flex justify-between text-xs">
+                        
+						
+						
+                        <a class="hover-orange" href="./register.html">
+                            Signup
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <button class="bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="login_btn" onclick="login()">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

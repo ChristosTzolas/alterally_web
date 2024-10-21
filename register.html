@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="./login.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+<body class=" bg-gray-100" style="scale:80%;">
+    <div class="relative box">
+        <!-- Back Button in the Top-Left Corner -->
+        <div class="form" form action="">
+            <h2>Create Account</h2>
+            <div class="inputBox">
+                <input type="text" required id="user">
+                <span>Username</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" required id="pass">
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="text" required id="name">
+                <span>Name</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="text" required id="email">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="tel" required id="phone">
+                <span>Phone Number</span>
+                <i></i>
+            </div>
+
+            <div class="inputBox">
+                <div id="map" style="height: 300px;"></div>
+                <i></i>
+                <span style:color="green";>Please pinpoint your current location!</span>
+            </div>
+            <div class="button_block">
+                <button type="button" class="button" id="register_btn" onclick="register()"><a> Register </a></button>
+                <button type="button" class="button" id="register_btn" onclick="window.location.href='index.html'"><a> Back to login </a></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

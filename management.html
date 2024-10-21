@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Panel</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-gray-100 flex">
+    <div id="sidePanel" class="side-panel bg-green-500 shadow-lg min-h-screen py-10 rounded-r-3xl text-white flex flex-col items-center">
+        <!-- Hamburger Button -->
+        <button id="toggleButton" class="hamburger-button absolute top-0 right-0 mt-4 mr-4">
+            <div class="hamburger-line bg-white mb-1"></div>
+            <div class="hamburger-line bg-white mb-1"></div>
+            <div class="hamburger-line bg-white"></div>
+        </button>
+        <img src="./icons/admin.png" alt="Admin logo" class="h-40 w-40">
+        
+        <!-- Navigation Icons -->
+        <a href="./dashboard.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/home.png" alt="Dashboard" class="h-6 w-6"> 
+        </a>
+        <a href="./management.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/items.png" alt="Item Management" class="h-6 w-6">
+        </a>
+        <a href="warehouse.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/boxes.png" alt="Warehouse Status" class="h-6 w-6">
+        </a>
+        <a href="map_admin.html" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/maps.png" alt="maps" class="h-6 w-6">
+        </a>               
+        <a href="php/logout.php" class="hover:bg-gray-700 p-2 rounded-full transition-all duration-300 mb-10">
+            <img src="./icons/logout.png" alt="Logout" class="h-6 w-6">
+        </a>
+    </div>
+
+    <!-- Main content area -->
+    <div class="container mx-auto pt-4 pl-20 pr-4 pb-4">
+        <h1 class="text-4xl font-bold text-green-700 mb-8">Item Management</h1>
+
+        <select id="disasterTypeSelector" class="mb-4 p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50" onchange="loadItems()">
+            <option value="">Select a Disaster Type</option>
+            <!-- Dynamically populate disaster types here -->
+        </select>
+        
+        <div id="itemList" class="mt-6">
+            <ul id="itemListUl" class="divide-y divide-gray-700">
+                <!-- Item list will be populated here -->
+            </ul> 
+        </div>
+
+        <!-- Add Item Button -->
+        <div class="text-right mb-6">
+            <button onclick="openAddItemModal()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Add New Item
+            </button>
+        </div>
+
+
+    
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/submission.js"></script>
+    <script src="./js/panels.js"></script>
+    <script src="./js/authorize.js"></script>
+    
+</body>
+</html>
